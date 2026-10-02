@@ -1,8 +1,9 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
 import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "orderitems")
@@ -11,6 +12,7 @@ public class OrderItem {
     @EmbeddedId
     private OrderItemId id;
 
+    @JsonIgnore
     @MapsId("orderId")
     @ManyToOne(
             fetch = FetchType.LAZY
@@ -21,6 +23,7 @@ public class OrderItem {
     )
     private Order order;
 
+    @JsonIgnore
     @MapsId("productId")
     @ManyToOne(
             fetch = FetchType.LAZY

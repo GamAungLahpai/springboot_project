@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
@@ -43,7 +43,7 @@ public class Order {
     )
     private CustomerAddress shippingAddress;
 
-
+    @JsonManagedReference("order-orderitems")
     @OneToMany(
             mappedBy = "order",
             cascade = CascadeType.ALL,

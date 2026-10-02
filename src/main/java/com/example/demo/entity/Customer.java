@@ -32,6 +32,15 @@ public class Customer {
     )
     private List<Order> orders = new ArrayList<>();
 
+    @JsonManagedReference("customer-profile")
+    @OneToOne(
+            mappedBy = "customer",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    private CustomerProfile customerProfile;
+
+
     public Customer() {
     }
 
@@ -83,6 +92,13 @@ public class Customer {
         this.orders = orders;
     }
 
+    public CustomerProfile getCustomerProfile() {
+        return customerProfile;
+    }
+
+    public void setCustomerProfile(CustomerProfile customerProfile) {
+        this.customerProfile = customerProfile;
+    }
 
     @Override
     public String toString() {
