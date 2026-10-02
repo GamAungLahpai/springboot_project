@@ -2,6 +2,9 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
@@ -31,6 +34,7 @@ public class Order {
     )
     private Customer customer;
 
+
     @ManyToOne(
             fetch = FetchType.LAZY
     )
@@ -38,6 +42,15 @@ public class Order {
             name = "shipping_address_id"
     )
     private CustomerAddress shippingAddress;
+
+
+    @OneToMany(
+            mappedBy = "order",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<OrderItem> orderItems = new ArrayList<>();
+
 
     public Order() {
     }
@@ -89,6 +102,15 @@ public class Order {
     public void setShippingAddress(CustomerAddress shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
 
     @Override
     public String toString() {
