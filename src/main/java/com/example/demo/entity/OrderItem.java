@@ -4,6 +4,7 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "orderitems")
@@ -23,7 +24,7 @@ public class OrderItem {
     )
     private Order order;
 
-    @JsonIgnore
+    @JsonBackReference("product-orderitems")
     @MapsId("productId")
     @ManyToOne(
             fetch = FetchType.LAZY
