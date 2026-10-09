@@ -33,6 +33,16 @@ The database schema contains **12 tables** with primary keys, foreign keys, and 
 
 Products can belong to a category and have a supplier. Their price history is stored separately in `pricechanges`. The `contacts` table is independent in the supplied schema.
 
+
+### Database Schema
+
+The database consists of 12 relational tables with primary keys, foreign keys, and indexes. It also includes a trigger for tracking product price changes and a scheduled event for automatically cleaning up old price history.
+
+The complete MariaDB database schema is available here:
+
+[View SQL Schema](https://github.com/GamAungLahpai/springboot_project/blob/main/Documents/Database_Schema.sql)
+
+
 ### Database Features
 
 - **Referential integrity:** Foreign keys link related records across tables.
