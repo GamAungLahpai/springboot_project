@@ -41,4 +41,10 @@ public class CustomerProfileController {
 
         return customerProfileRepository.save(profile);
     }
+
+    @GetMapping("/{id}")
+    public CustomerProfile getProfile(@PathVariable Integer id) {
+        return customerProfileRepository.findById(id)
+                .orElseThrow();
+    }
 }

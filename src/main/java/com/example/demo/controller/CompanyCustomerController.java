@@ -3,10 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.CompanyCustomer;
 import com.example.demo.repository.CompanyCustomerRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/company-customers")
@@ -24,5 +21,11 @@ public class CompanyCustomerController {
             @RequestBody CompanyCustomer companyCustomer
     ){
         return companyCustomerRepository.save(companyCustomer);
+    }
+
+    @GetMapping("/{id}")
+    public CompanyCustomer getCompanyCustomer(@PathVariable Integer id) {
+        return companyCustomerRepository.findById(id)
+                .orElseThrow();
     }
 }
